@@ -103,7 +103,9 @@ async def main(bot: Client, message: Message):
         await message.reply_text(
             text="**Choose an option from below:**",
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Save in Batch", callback_data="addToBatchTrue")]]),
+                [InlineKeyboardButton("Save in Batch", callback_data="addToBatchTrue")],
+                [InlineKeyboardButton("Get Sharable Link", callback_data="addToBatchFalse")]
+            ]),
             quote=True,
             disable_web_page_preview=True
         )
@@ -329,7 +331,10 @@ async def button(bot: Client, cmd: CallbackQuery):
                     [
                         InlineKeyboardButton("About Bot", callback_data="aboutbot"),
                         InlineKeyboardButton("About Dev", callback_data="aboutdevs")
-                    ]
+                    ],
+                                        [
+						InlineKeyboardButton("Cʟᴏsᴇ", callback_data="closeMessage") 
+					]
                 ]
             )
         )
@@ -413,10 +418,6 @@ async def button(bot: Client, cmd: CallbackQuery):
                                    [InlineKeyboardButton("Get Batch Link", callback_data="getBatchLink")],
                                    [InlineKeyboardButton("Close Message", callback_data="closeMessage")]
                                ]))
-        await cmd.message.edit("File Saved in Batch!\n\n"
-                               "Press below button to get batch link.",
-                               reply_markup=InlineKeyboardMarkup([
-                                   [InlineKeyboardButton("Get Batch Link", callback_data="getBatchLink")]]))
 
     elif "addToBatchFalse" in cb_data:
         await SaveMediaInChannel(bot, editable=cmd.message, message=cmd.message.reply_to_message)
