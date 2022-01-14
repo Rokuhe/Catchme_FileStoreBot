@@ -21,6 +21,7 @@ from handlers.save_media import SaveMediaInChannel, SaveBatchMediaInChannel
 
 API_KEY = os.environ["API_KEY"]
 API_KEY1 = os.environ["API_KEY1"]
+API_KEY2 = os.environ["API_KEY2"]
 
 MediaList = {}
 Bot = Client(Config.BOT_USERNAME, bot_token=Config.BOT_TOKEN, api_id=Config.API_ID, api_hash=Config.API_HASH)
@@ -446,7 +447,8 @@ async def link_handler(Bot, message):
       try:
         short_link = await get_shortlink(links[num])
         short_link1 = await get_shortlink1(links[num])
-        await message.reply(f'**Shortened URLs:**\n\n{short_link}\n\n{short_link1}\n\nDemo - shorturl.at/aqAH3 / shorturl.at/muALU', quote=True, disable_web_page_preview=True)
+        short_link2 = await get_shortlink2(links[num])
+        await message.reply(f'**Shortened URLs:**\n\n{short_link}\n\n{short_link1}\n\n{short_link2}\n\nDemo - shorturl.at/aqAH3 / shorturl.at/muALU', quote=True, disable_web_page_preview=True)
       except Exception as e:
         await message.reply(f'Error: {e}', quote=True)
 
@@ -466,6 +468,15 @@ async def get_shortlink1(link):
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url1, params=params, raise_for_status=True) as response:
+            data = await response.json()
+            return data["shortenedUrl"]
+        
+async def get_shortlink2(link):
+    url1 = 'https://pdiskshortener.in/api'
+    params = {'api': API_KEY2, 'url': link}
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url2, params=params, raise_for_status=True) as response:
             data = await response.json()
             return data["shortenedUrl"]
 
