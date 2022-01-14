@@ -473,7 +473,7 @@ async def get_shortlink1(link):
             return data["shortenedUrl"]
         
 async def get_shortlink2(link):
-    url1 = 'https://pdiskshortener.in/api'
+    url2 = 'https://pdiskshortener.in/api'
     params = {'api': API_KEY2, 'url': link}
 
     async with aiohttp.ClientSession() as session:
