@@ -22,7 +22,6 @@ from handlers.save_media import SaveMediaInChannel, SaveBatchMediaInChannel
 API_KEY = os.environ["API_KEY"]
 API_KEY1 = os.environ["API_KEY1"]
 API_KEY2 = os.environ["API_KEY2"]
-API_KEY3 = os.environ["API_KEY3"]
 
 MediaList = {}
 Bot = Client(Config.BOT_USERNAME, bot_token=Config.BOT_TOKEN, api_id=Config.API_ID, api_hash=Config.API_HASH)
@@ -481,14 +480,6 @@ async def get_shortlink2(link):
         async with session.get(url2, params=params, raise_for_status=True) as response:
             data = await response.json()
             return data["shortenedUrl"]
-        
-async def get_shortlink3(link):
-    url3 = 'https://cararegistrasi.com/api'
-    params = {'api': API_KEY3, 'url': link}
 
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url3, params=params, raise_for_status=True) as response:
-            data = await response.json()
-            return data["shortenedUrl"]
 
 Bot.run()
