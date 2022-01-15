@@ -449,7 +449,7 @@ async def link_handler(Bot, message):
         short_link = await get_shortlink(links[num])
         short_link1 = await get_shortlink1(links[num])
         short_link2 = await get_shortlink2(links[num])
-        await message.reply(f'**Shortened URLs:**\n\n{short_link}\n\n{short_link1}\n\n{short_link2}\n\nDemo - shorturl.at/aqAH3 / shorturl.at/muALU', quote=True, disable_web_page_preview=True)
+        await message.reply(f'**Shortened URLs:**\n\n{short_link}\n\n{short_link1}\n\n{short_link2}\n\nDemo - https://jasuranstreamer.herokuapp.com/watch/9083 / https://jasuranstreamer.herokuapp.com/watch/9081', quote=True, disable_web_page_preview=True)
       except Exception as e:
         await message.reply(f'Error: {e}', quote=True)
 
