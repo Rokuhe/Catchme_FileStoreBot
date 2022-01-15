@@ -483,7 +483,7 @@ async def get_shortlink2(link):
             return data["shortenedUrl"]
         
 async def get_shortlink3(link):
-    url3 = 'https://cararegistrasi.com/st/?api'
+    url3 = 'https://cararegistrasi.com/api'
     params = {'api': API_KEY3, 'url': link}
 
     async with aiohttp.ClientSession() as session:
